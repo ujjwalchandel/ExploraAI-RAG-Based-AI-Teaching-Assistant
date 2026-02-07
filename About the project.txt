@@ -1,0 +1,22 @@
+## Inspiration
+The problem started while I was learning from courses that used pre-recorded video lectures. There was no one to ask when I had doubts, and because of that, I often couldn’t move forward. If a topic wasn’t explained clearly, there was nobody to explain it again in a simpler, more effective way.
+As a slow learner, I need more examples to properly understand a concept. Every time I got stuck, I had to rely on Google searches, which made the learning process tiring and time-consuming. Revising a particular topic or subtopic from previous lectures was also difficult, it took a lot of time to find the correct video and the exact timestamp where the topic was explained. This made my learning even slower.
+Sometimes, I just wanted a quick overview or summary of a lecture, but there was no one to provide it. There were also moments when the teacher’s teaching style confused me instead of helping me understand the topic better.
+That’s when the idea came to me, why not build an assistant that could solve these problems and make learning easier and faster, not just for me, but for others facing the same challenges? Since large language models already exist, I realized they could help me build something like this. With that motivation, I started developing an AI-based learning assistant and began applying my skills and exploring the technologies and dependencies required to turn this idea into reality.
+
+## What it does
+The learning assistant is designed to make the learning process easier, faster, and more effective for students. It allows learners to ask any question related to a specific course through an interactive chat-based interface, just like having a personal tutor available at any time. The AI assistant understands the entire course content and can clearly explain any topic taught in the lectures. If a learner wants to revise or focus on a specific concept, the assistant provides the exact video timestamp, allowing them to jump directly to the relevant part of the lecture without wasting time searching. For better understanding, especially for slow learners, the assistant explains concepts in a simpler way using multiple examples and alternative explanations. If the course includes programming, the assistant can also write and explain code taught in the lectures, helping learners understand both theory and implementation.
+
+In addition, the assistant can generate concise summaries and overviews of complete lectures, making revision quicker and more efficient. It can also explain entire lectures step by step, clarify confusing teaching styles, and convert complex explanations into easy-to-understand language. The assistant further supports students by generating structured content for note-making, helping them organize their learning and revise effectively. Overall, it acts as a smart, personalized learning companion that reduces confusion, saves time, and makes the learning journey smoother and more enjoyable for students.
+
+## How we built it
+
+
+
+## Challenges we ran into
+
+## Accomplishments that we're proud of
+
+## What we learned
+
+## What's next for ExploraAI : RAG Based AI Teaching Assistant

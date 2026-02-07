@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ExploraAI: RAG Based AI Teaching Assistant</title>
+    <link rel="icon" href="./chatbot-icon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="chatbot-icon" onclick="toggleChat()"><img src="./chatbot-icon.png" alt="icon"></div>
+
+    <div class="chatbot" id="chatbot">
+        <div class="chat-header">
+            <span>ExploraAI</span>
+            <button onclick="toggleChat()">✖</button>
+        </div>
+
+        <div class="chat-body" id="chatBody">
+            <div class="bot-msg">Hello 👋 I’m your virtual assistant. Ask me anything!</div>
+        </div>
+
+        <div class="chat-footer">
+            <input type="text" id="userInput" placeholder="Type your message..." onkeydown="handleEnter(event)" />
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

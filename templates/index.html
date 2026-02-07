@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}{{ course.title }} | Explora Learn{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+  <div class="hero-text">
+    <h1>{{ course.title }}</h1>
+    <p>{{ course.description }}</p>
+    <div class="hero-meta">
+      <span class="pill">
+        <i class="fa-solid fa-user"></i>
+        Instructor: {{ course.instructor }}
+      </span>
+      <span class="pill">
+        <i class="fa-solid fa-play"></i>
+        {{ course.lectures|length }} video lectures
+      </span>
+      <span class="pill">
+        <i class="fa-solid fa-signal"></i>
+        Beginner Friendly
+      </span>
+    </div>
+  </div>
+  <div class="hero-highlight glass-card">
+    <h3>What you'll learn</h3>
+    <ul>
+      <li>Write clean Python code from day one.</li>
+      <li>Understand variables, loops, and functions clearly.</li>
+      <li>Build a strong foundation for automation and web apps.</li>
+    </ul>
+  </div>
+  <div class="hero-gradient"></div>
+</section>
+
+<section class="player-layout glass-card">
+  <div class="video-area">
+    {% set first = course.lectures[0] %}
+    <div class="video-wrapper">
+      <video
+        id="lecturePlayer"
+        class="video-player"
+        controls
+        preload="metadata"
+        data-current-index="0"
+      >
+        <source src="{{ first.video_url }}" type="video/mp4" />
+        Your browser does not support HTML5 video.
+      </video>
+      <div class="video-overlay gradient"></div>
+    </div>
+    <div class="video-info">
+      <div>
+        <span class="badge">Now Playing</span>
+        <h2 id="lectureTitle">{{ first.title }}</h2>
+      </div>
+      <p id="lectureSummary">{{ first.summary }}</p>
+      <div class="video-meta">
+        <span id="lectureIndex">Lecture 1 of {{ course.lectures|length }}</span>
+        <span id="lectureDuration">
+          <i class="fa-regular fa-clock"></i> {{ first.duration }}
+        </span>
+      </div>
+      <div class="video-controls">
+        <button id="prevBtn" class="btn ghost small">
+          <i class="fa-solid fa-arrow-left"></i>
+          Previous
+        </button>
+        <button id="nextBtn" class="btn primary small">
+          Next
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <label class="autoplay-toggle">
+          <input id="autoplayToggle" type="checkbox" checked />
+          <span class="toggle-slider"></span>
+          <span class="label">Autoplay next lecture</span>
+        </label>
+      </div>
+      <div class="progress-outer">
+        <div id="courseProgress" class="progress-inner"></div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="playlist">
+    <div class="playlist-header">
+      <h3>Lecture Playlist</h3>
+      <span class="playlist-subtitle">Click any lecture to jump ahead</span>
+    </div>
+    <ul
+      id="playlistList"
+      class="playlist-list"
+      data-total="{{ course.lectures|length }}"
+    >
+      {% for lecture in course.lectures %}
+      <li
+        class="playlist-item {% if loop.first %}active{% endif %}"
+        data-index="{{ loop.index0 }}"
+        data-video-url="{{ lecture.video_url }}"
+        data-title="{{ lecture.title }}"
+        data-summary="{{ lecture.summary }}"
+        data-duration="{{ lecture.duration }}"
+      >
+        <div class="thumb">
+          <img src="{{ lecture.thumbnail_url }}" alt="{{ lecture.title }}" />
+          <span class="thumb-overlay">
+            <i class="fa-solid fa-play"></i>
+          </span>
+        </div>
+        <div class="item-main">
+          <div class="item-top">
+            <span class="lecture-badge">Lecture {{ loop.index }}</span>
+            <span class="duration">{{ lecture.duration }}</span>
+          </div>
+          <h4>{{ lecture.title }}</h4>
+          <p>{{ lecture.summary }}</p>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </aside>
+</section>
+{% endblock %}
+
+
