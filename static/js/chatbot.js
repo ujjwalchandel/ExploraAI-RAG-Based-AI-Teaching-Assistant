@@ -9,18 +9,25 @@ function handleEnter(event) {
     }
 }
 
-function sendMessage() {
+async function sendMessage() {
     const input = document.getElementById("userInput");
     const text = input.value.trim();
     if (text === "") return;
 
     addMessage(text, "user-msg");
     input.value = "";
-
-    setTimeout(() => {
-        const reply = getBotReply(text);
+ 
+    try {
+        const response = await getBotReply(text); // This "unwraps" the promise
+        
+        // Assuming Flask returns: jsonify({"message": "Hello!"})
+        const reply = response.message; 
+        
         addMessage(reply, "bot-msg");
-    }, 800);
+    } catch (error) {
+        console.error("Error fetching reply:", error);
+        addMessage("Server error. Please try again.", "bot-msg");
+    }
 }
 
 function addMessage(text, className) {
@@ -33,17 +40,16 @@ function addMessage(text, className) {
 }
 
 /* Smart Reply System */
-function getBotReply(message) {
+async function getBotReply(message) {
     message = message.toLowerCase();
     if(message === "")
         return;
 
-    fetch('/', {
+    const response = await fetch('/process', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ "query": message })
     })
-    .then(response => response.json())
-    .then(data => alert("Server says: " + data.message));
+    return await response.json();
 
 }

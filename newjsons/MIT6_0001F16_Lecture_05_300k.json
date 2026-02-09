@@ -1,0 +1,1080 @@
+{
+    "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+    "text": " The following content is provided under a Creative Commons license. Your support will help MIT OpenCourseWare continue to offer high quality educational resources for free. To make a donation or view additional materials from hundreds of MIT courses, visit MIT OpenCourseWare at ocw.mit.edu. A quick, quick recap of what we did last time. So last time we introduced this idea of decomposition and abstraction, and we started putting that into our programs. These were sort of high level concepts, and we achieved them using these concrete things called functions in our programs. And functions allowed us to create code that was coherent, that had some structure to it, and was reusable. And from now on in problem sets and in lectures, I'm going to be using the code that I've used in the last two years. And I'm going to be using functions a lot, so make sure that you understand how they work and all of those details. So today we're going to introduce two new data types. And they're called compound data types because they're actually data types that are made up of other data types, particularly ints, floats, booleans, and strings. And actually not just these, but other data types as well. So that's why they're called compound data types. So we're going to look at a new data type called a tuple and a new data type called a list. And then we're going to talk about these ideas that come about specifically with lists. All right, so let's go right into tuples. So if you recall strings, strings were sequences of characters. Tuples are going to be similar to strings in that they're going to be sequences of something. Except that tuples aren't just sequences of characters, they can be sequences of anything. They're a collection of data where that data can be of any type. So a tuple can contain elements that are integers, floats, strings, and so on. Tuples are immutable. And if you recall, we talked about this word a little bit when we talked about strings. So that means once you create a tuple object, you can't modify it. Just like when you created a string object, you weren't able, you were not allowed to modify it. So the way we create tuples are with these open and close parentheses. This shouldn't be confused with a function, because there's nothing, there's no, this isn't a function call. It's just how you represent a tuple. For a function call, you'd have something right before the parentheses. This is just how we chose to represent a tuple. And just a plain open and close parentheses represents an empty tuple. So it's of length 0. There's nothing in it. OK. Whoops. You can create a tuple that contains some elements by separating each element with a comma. So in this case, this is a tuple that can be accessed with a variable t that contains three elements. The first is an integer. The second is a string. And the third is another integer. Much like strings, we can index into tuples to find out values at particular indices. So you read this as t at position 0. So the tuple represented by a variable t at position 0 will evaluate to 2, because again, we start counting from 0 in computer science. So that gives us the first element. Just like strings, we can concatenate tuples together. That just means add them together. So if we add these two tuples together, we just get back one larger tuple that's just those two, the elements of those tuples. Just put together in one larger tuple. Again, much like strings, we can slice into tuples. So t slice from index 1 until index 2. Remember, we go until this stop at minus 1. So this only gives us one element inside the tuple. And this is not a mistake. This extra comma here actually represents a tuple object. OK. If I didn't have this comma here, then this would just be a string. The parentheses wouldn't really make any difference. But the comma here makes it clear to Python that this is a tuple with only one element in it. We can slice even further to get a tuple with two elements. And we can do the usual operations, like get the length of a tuple, which says how many elements are in my tuple. And len of this t would evaluate to 3, because there are three elements inside the tuple. Each element, again, separated by the comma. And just like strings, if we try to change a value inside the tuple, in this case, I wanted to try to change the value of the second element to 4. Python doesn't allow that, because tuples are immutable. OK. So why would we want to use tuples? Tuples are actually useful in a couple ways. There are a couple of different scenarios. So recall, a few lectures ago, we looked at this code where we tried to swap the values of variables x and y. And this first code actually didn't work, because you're overwriting the value for x. So instead, what we ended up doing was creating this temporary variable, where we stored the value of x, and then we overwrote it, and then we used the temporary variable. Well, it turns out this three-liner code right here can actually be written in one line using tuples. So you say x comma y is equal to y comma x. And Python goes in and says, what's the value of y? And assigns it to x. And then what's the value of x? And assigns it to y. Extending on that, we can actually use tuples to return more than one value from a function. So functions, you're only allowed to return one object. OK. So you're not allowed to return more than one object. However, if we use a tuple object, and if that's the thing that we return, we can actually get around this sort of rule by putting in as many values as we want inside the tuple object. And then we can return as many values as we'd like. So in this specific example, I'm trying to calculate the quotient and remainder when we divide x by y. So this is a function definition here. And down here, I'm calling the function with 4 and 5. So when I make the function call, 4 gets assigned to x, and 5 gets assigned to y. So then q is going to be the integer division when x is divided by y. And this double slash just means it's like casting the result to an integer. It says divide it. Keep the whole number part and just delete everything else beyond the decimal point. So when you divide 4 by 5, this q is actually going to be 0. It's 0 point something, and I don't care about the point something. And then the remainder is just using the percent operator. So when I divide 4 by 5, the remainder is going to be 4. And notice that I'm going to be returning q and r, which are these two values that I calculated inside my function. And I'm returning them in the context. OK. So I'm going to return the value of the function. And I'm returning the value of the function. And that's going to be the context of this tuple. So I'm only returning one object, which is a tuple. It just so happens that I'm populating that object with a few different values. OK. So when the function returns here, this is going to say 0 comma 4. That's the tuple it's going to return. Q is going to be 0 and r is going to be 4. So then this line here, quote rem equals 0, 4, is basically this little. It's sort of like what we did up here. So it assigns quote to 0 and rem to 4. So we can use tuples. This is very useful. We can use them to return more than one value from a function. So tuples are great. Might seem a little bit confusing at first, but they're actually pretty useful because they hold collections of data. So here I wrote a function which I can apply to any set of data. And I'll explain what this function does, and then we can apply it to some data. And you can see that you can extract some very basic information from whatever set of data that you happen to collect. So here's a function called getData, and it does all of this stuff in here. And in the actual code associated with the lecture, I actually said what the condition on a tuple was. So it has to be a tuple of a certain, that looks a certain way. And then I'll just say, OK, I'm going to do a little bit of math. And this is the way that it has to look. So it's one tuple. The outer parentheses out here represent the fact that it's a tuple. And the elements of this tuple are actually other tuples. So the first element's a tuple object, the second element's a tuple object, and third one's a tuple object, and so on. And each one of these inner tuple objects are actually going to contain two elements, the first being an integer. And the second being a string. So that's sort of the precondition that this function assumes on a tuple before it can work. All right. So given a tuple that looks like that, what's the function going to do? It's first creating two empty tuples. One is called nums, and one is called words. And then there's a for loop. And notice here, the for loop is going to iterate over every element inside the tuple. Remember in strings, when we were able to use for loops that iterated over the characters directly as opposed over the indices? Well, we're doing the same sort of thing here. Instead of iterating over the indices, we're going to iterate over the tuple object at each position. So first time through the loop, t here is going to be this first tuple. The second time through the loop, t is going to be this tuple. And the third time, it's going to be this exact tuple. So each time through the loop, what I'm doing is I'm going to have this nums tuple that I'm going to keep adding to. And each time, I'm going to create a new object and reassign it to this variable nums. And each time through the loop, I'm looking at what the previous value of nums was. So what was my previous tuple? And I'm going to add it with this singleton tuple. So it's a tuple of one character or one element. And then I'm going to add it to this singleton tuple. OK. And this element being t at position 0. So you have to sort of wrap your mind around how this is working. So if t is going to be this tuple element right here, then t at position 0 is going to be this blue bar here. So it represents the integer portion of the tuple. So as we're going through the loop, this nums is going to get populated with all of the integers from every one of my tuple inside of my inner tuple objects. So that's basically what this line here is doing. At the same time, I'm also populating this words tuple. And the words tuple is a little bit different, because I'm not adding every single one of these string objects, so t at position 1 being the string part of the inner tuple. I'm actually adding the string part only if it's not already in my words list. OK. So here, I'm essentially grabbing all of the unique strings from my list. These last sort of three lines, three, four lines here, just do a little bit of arithmetic on it, saying, OK, now I have all of the numbers here. What's the minimum out of all of these? And then what's the maximum out of all of these? And then this unique words variable tells me how many unique words do I have in my original tuple. So this feels sort of generic, so let's run it on some data. So here, I tested it on some test data. And then I got some actual data. And this actual data that I wanted to analyze was Taylor Swift data. And representing the integer portion of the tuple representing a year, and the string portion of the tuple representing. OK. So this is the person who she wrote a song about that year. OK. So some real world data that we're working with here. Very important that we know this information. OK. So with this data, I can run it. I can plug it into this function that I wrote up here. And I'm going to actually comment this out so it doesn't get cluttered. And if I run it. This is the part where I'm calling my function. I'm calling it with this data here. T Swift being this tuple of tuples. And what I get back is up here, line 38, is the return from the function being a large tuple. And that large tuple, I'm then assigning it to my own tuple in my program. And then I'm just writing out, printing out, some statement. And then I'm just going to write out the number of people that I have in here. OK. So I'm getting the minimum year, the maximum year, and then the number of people. So I can show you that it works if I replace one of these names with another one that I already have in here. So instead of writing a song about five people, she would have wrote a song about four people. Yay, it worked. OK. OK. So that's tuples. And remember. Or recall. Keep it in mind. Keep in mind, tuples were immutable. Now we're going to look at a very, very similar data structure to tuples called lists. Except that instead of lists being immutable, lists are going to be mutable objects. So much like lists, they're going to contain elements of any type or objects of any type. You denote a list with square brackets instead of parentheses. And the difference being that they're going to be mutable objects instead of immutable. So creating an empty list, you just do open, close square brackets. You can have a list of elements of different types, even a list of lists. So one of the elements being a list. As usual, you can apply length on a list. And that tells you how many elements are in it. This is going to tell you how many elements are in your list l. So it's not going to look any further than that. So it's going to say this is an integer. This is a string. This is an integer. This is a list. It's not going to say how many elements are in this list. It's just going to look at the outer shell of elements. Indexing and slicing works the same way. So l at position 0 gives you the value 2. You can index into a list and then do something with the value that you get back. So l at position 2 says that's this value there, and add 1 to it. l at position 3, that's going to be this list here. Notice it evaluates to another list. You're not allowed to index outside of the length of the list. So that's going to give you an error, because we only have four elements. And you can also have expressions for your index. So this Python just replaced. It replaces i with 2 here and says, what's l at position 1? And it grabs that from in there. So very, very similar to the kinds of operations we've seen on strings and tuples. The one difference, and that's what we're going to focus on for the rest of this class, is that lists are mutable objects. So what does that mean internally? Internally, that means let's say we have a list l, and we assign it. Sorry, let's say we have a variable l that's going to point to a list. So let's say we have a list with three elements, 2, 1, and 3. Each element is an integer. When we were dealing with tuples or with strings, if we reassigned, if we tried to do this line right here, we had an error. But this is actually allowed with lists. So when you execute that line, Python's going to look at that middle element, and it's going to change its value from a 1 to a 5. And that's just due to the mutability nature of the list. So notice that this list variable, this variable l, which originally pointed to this list, points to the exact same list. We haven't created a new object in memory. We're just modifying the same object in memory. And you're going to see why this is important as we look at a few side effects that can happen when you have this. So I've said this a couple of times before, but it'll make your life a lot easier if you try to think of, when you want to iterate through a list, if you try to think about iterating through the elements directly. It's a lot more Pythonic. I've used that word before. So this is sort of a common pattern that you're going to see where you're iterating over the list elements directly. Right? We've done it over tuples. We've done it over strings. We've done it over strings. So these are identical codes. They do the exact same thing, except on the left, you're going through 0, 1, 2, 3, and so on. And then you're indexing into each one of these numbers to get the element value. Whereas on the right, this loop variable i is going to have the element value itself. Right? So this code on the right is a lot cleaner. OK. So now let's look at some operations that we can do on lists. OK? So there's a lot more operations that we can do on lists because of their mutability aspect than we can do on tuples or strings, for example. OK? So here's a few of them. And they're going to take advantage of this mutability concept. So we can add elements directly to the end of the list using the same method. So if I want to do this, I can do this. And then I can do this. And then I can do this. And then I can do this. And then I can do this. And then I can do this. Using this funky looking notation l.append. And then the element we want to add to the end. And this operation mutates the list. So if I have l is equal to 2, 1, 3, and I append the element 5 to the end, then the same l is going to point to the same object, except it's going to have an extra number at the end, 5. But now, what's this dot? We haven't really seen this before. OK? And then, what's this dot? It's going to become apparent what it means in a few lectures from now. But for the moment, you can think of this dot as an operation. It's like applying a function, except that the function that you're applying can only work on certain types of objects. OK? So in this case, append, for example, is the function we're trying to apply. And we want to apply it to. Whatever is before the dot, which is the object. And append has only been defined to work with a list object, for example, which is why we're using the dot in this case. We wouldn't be able to use append on an integer, for example, because that sort of function is not defined on an integer. So for now, you'll sort of have to remember which are functions that work with a dot, and which are functions like len that aren't with a dot. But in a couple lectures, I promise it'll be a lot clearer. OK? So for now, just think of it as whatever is before the dot is the object you're applying a function to. And whatever is after the dot is the function you're applying on the object. OK. OK. So we can add things to the end of our list. We can also combine lists together using the plus operator. OK? The plus operator is the function. OK? The plus operator does not mutate the list. OK? Instead, it gives you a new list that's the sum of those two lists combined. So in this case, if l1 is 2, 1, 3, and l2 is 4, 5, 6, when we add those two lists together, that's going to give us an entirely new list, leaving l1 and l2 the same. And that's why we have to assign the result of the addition to a new list. Otherwise, the result's lost. If you want to mutate a list directly and make it longer by the elements within another list, then you can use this extend function or extend method. OK? And this is going to mutate l1 directly. So if l1 was 2, 1, 3, if you extend it by the list 0, 6, it's just going to tack on 0, 6 to l1 directly. So notice l1 has been muted. OK? OK. So that's adding things to lists. We can also delete things from lists. Right? We don't just want to keep adding to our lists because then they become very, very big. So let's see how we can delete some items from our list. There's a few ways. First one being you can use this del function. And this says delete from the list l. So you can delete the element at this index. OK? So you give it the index 0, 1, 2, or whatever index you want to delete the element at. If you just want to delete the element at the end of the list, that's the farthest right, you do l.pop. If you want to remove a specific element so you know there's somewhere in your list there's the number 5 and you want to delete it from the list, then you say l.remove and you say what element you want to remove. And that only removes the very first element. OK? So if you have a list that's going to be a list, then you're going to remove the very first occurrence of it. So if there's two 5s in your list, then it's only going to remove the very first one. OK? So let's take a look at this sort of sequence of commands. So we have first l is equal to this long list here. OK? And I want to mention that all of these operations are going to mutate our list, which is why I wrote this comment here that says, assume that you're doing these in order. OK? So as you're doing these in order, you're going to be mutating your list. And if you're mutating your list, you have to remember that you're working with this new mutated list. OK? So the first thing we're doing is we're removing 2 from our list. So when you remove 2, this says look for an element with a value 2 and take it away from the list. So that's the very first one here. So the list we're left with is just everything after it. Then I want to remove 3 from the list. And notice there's two of them. There's this 3 here. And there's this 3 here. So we're going to remove only the first one, which is this one here. So the list we're left with is 1, 6, 3, 7, 0. Then we're going to delete from the list l the element at position 1. So starting counting from 0, the element at position 1 is this one here. So we've removed that. And we're left with 1, 3, 7, 0. And then when we do l.pop, that's going to delete the element. And we're going to refer this to the right, so at the end of the list, which is that 0. So then we're left with only 1, 3, and 7. And l.pop is often useful because it tells you the return value from l.pop is going to be the value that it removed. So in this case, it's going to return 0. I want to mention, though, that some of the so these functions, if you take a look at the list, you have to be careful with return values. So you can think of all of these as functions that operate on a list, except that what these functions do is they take in the list and they modify it. But as functions, they obviously return something back to whoever called them. And oftentimes, they're going to return the value none. So for example, if you are going to do l.remove2, and you print that out, that might print out none for you. OK? So you can't just assign the value of this to a variable and expect it to be the mutated list, right? The list got mutated. The list that got mutated is the list that was passed into here. We're going to look at one example in a few slides that's going to show this. OK. Another thing that we can do, and this is often useful when you're working with data, is to convert lists to strings and then strings to lists. Sometimes it might be useful to work with strings, as opposed to a list, and vice versa. So this first line here, listS, takes in a string and casts it to a list. So much like we cast a float to an integer, for example, you're just casting a string to a list here. And when you do that at this line, so if this is your s here, when you do listS, this is going to give you a list. Looks like this, where every single character in s is going to be its own element. So that means every. So the character is going to be a string, and it's going to be separated by a comma, so including spaces. Sometimes you don't want each character in the list to be its own element. Sometimes you want, for example, if you're given a sentence, you might want to have everything in between spaces being its own element. So that'll give you every word in the sentence, for example. In that case, you're going to use split. In this case, I've split over the less than sign, but again, if you're doing the sentence example, you might want to split on the space. So this is going to take everything in between the sign that you're interested in, in this case, the less than sign, and it's going to set it as a separate element in the list. So that's how you convert strings to lists. And sometimes you're given a list, and you might want to convert it to a string, so that's where this join. So this method or function is useful. So this is an empty string, so it's just open, close, quote, right away, no space. So this just joins every one of the elements in the list together, so to return the string abc. And then you can join on any character that you would want. So in this case, you can join on the underscore. So it'll put whatever characters in here in between every one of the elements in your list. Pretty useful functions. OK. A couple other operations we can do on lists, and these are also pretty useful, is to sort lists and to reverse lists, and many, many others in the Python documentation. So sort and sorted both sort lists, but one of them mutates the list, and the other one does not. And sometimes it's useful to use one, and sometimes it's useful to use the other. So if I have this list l is equal to 9, 6, 0, 1, 2, 3, 4, 5, 0, 3, sorted, you can think of it as give me the sorted version of l. Gives you back the sorted version of l, so it returns a new list that's the sorted version of the input list and does not mutate l. So it keeps l the exact same way. So this will be replaced by the sorted version of the list, which you can assign to a variable and then do whatever you want with it, like l2 is equal to 0. So it's going to be the same as l2 sorted l, for example. And it keeps l the same. On the other hand, if you just want to mutate l and you don't care about getting another copy that's sorted, you just do l.sort, and that's going to automatically sort l for you, and l is now the sorted version of l. Similarly, reverse is going to take l and reverse all the characters. It's going to take all the elements in it. So the last one's the first one. The second last one is the second one and so on. So lists are mutable. We've said that so many times in this lecture. But what exactly does that mean? What implications does that have? Once again, this next part of the lecture Python tutor. Just paste all the code in and go step by step to see exactly what's happening. 0. 0. 0. So lists are mutable. As you have variable names, so for example, l is equal to some list, that l is going to be pointing to the list in memory. And since it's a mutable object, this list, you can have more than one variable that points to the exact same object in memory. And if you have more than one variable that points to the same object in memory, if that object in memory is changed, then when you access it through any one of these variables, they're all going to give you the changed object value. So the key phrase to keep in mind when you're dealing with lists is what side effects could happen. If you're mutating a list, if you're doing operations on lists, what side effects, what variables might be affected by this change? Let's come back. Let's come back down to Earth for a second. This will wake a lot of people up. So let's do an analogy with people. Let's say we have a person. A person, in this case, Justin Bieber, is going to be an object. I'm an object. I'm like the number three. Bieber's an object. He's like number five. We're different objects. We're both of type people. OK. Let's say we have a person. Let's say a person has different attributes. Let's say he gets two attributes to begin with. He's a singer and he's rich. I can refer to this person object by many different names. His full name, his stage name, all of the fangirls call him by these names. People who dislike him call him by other names that I didn't put up here. But he's known by all these different names. They're all aliases or nicknames. They're all nicknames that point to this same person object. Right? OK. So originally, let's say I say Justin Bieber is a singer and rich. Those are the two attributes I've originally assigned to him. And then let's say I want to assign a different attribute to him and say Justin Bieber is a singer, a rich, and a troublemaker. I'm being kind here. OK. So if I say Justin Bieber has these three attributes, so it's the same person I'm referring to, then all of his nicknames. Right? Are going to refer to this exact same person. So all of his nicknames are going to, or aliases, will refer to the same person object, right, with these changed attributes. Does that make sense? OK. So that sort of idea arises in lists. So list is like a person object whose attributes can change, for example. And as they change, all of the different aliases for this object will point to this changed object. OK. So let's see a few examples. I apologize if this is a little small. But this I basically copy and pasted from the Python tutor, which is just from the code from today's lecture. OK. So I have these lines of code here. The first couple of lines really just show what happens when you're dealing with non-mutable objects. So with non-mutable objects, you have two separate objects that get their own values. And that's it. End of story. OK. So I have this list. With lists, however, there's something different that happens. So I have warm is a variable. And it's going to be equal to this list. So warm is going to point to this list here, red, yellow, orange. It contains three elements. Hot is equal to warm. It means I'm creating an alias for this list. And the alias is going to be with this variable hot. So notice warm and hot point to the exact, same object. So on line 8, when I append this string pink to my object, since both of these two variables point to the exact same object, if I'm trying to access this object through either variable, they're both going to print out the same thing. And that's the side effect. That's the side effect of lists being mutable. OK. So I have a list. If you want to create an entirely new copy of the list, then you can clone it, which sounds really cool. But really, it's just making a copy of the list. And you clone it using this little notation here, which is open, close, square brackets with a colon. And we've sort of seen this notation here. And this tells Python this is 0. Sorry. This is 0. And this is length. Cool. I guess. But it basically says, take every element, create a new list with those exact same elements, and assign it to the variable chill. So here, if I originally have cool is equal to blue, green, gray right here, when I clone it on line 2 with that funky notation, I'm creating a new copy of it. And then on the next line, when I'm appending another element to the copy, notice I'm just altering the copy. The original stayed the same because I've cloned it. So if you don't want to have this side effect issue, then you should clone your list. OK. So let's see a slightly more complicated example where you're going to see the difference between sort and sorted in the context of this. OK. So sort.sort.mutability and side effects issue. OK. So once again, let's create this warm is equal to red, yellow, orange. So that's what warm is going to point to this list. And then sorted warm is equal to warm.sort. So .sort mutates. So as soon as I do that, that list warm is now the sorted version of it. And notice that I've assigned the return. return of this to sorted warm. And the return is none because l.sort or .sort mutated the list. It didn't return a sorted version of the list. It mutated the list itself. So when I print warm and I print sorted warm, I'm printing the mutated version and then this none here. Sorted, on the other hand, returns. It doesn't sort it, does not sort the list that's given to it. And instead, it returns a sorted version of the list. So in this case, if cool is equal to these three colors, gray, green, blue, if I do sorted cool, it's going to return the sorted version of that list, which is blue, green, gray. And it's assigned to the variable sorted cool. So when I print them, it's going to show me the two separate lists, one being the original unsorted one and one being the sorted version. Last one's a little bit more complicated, but it shows that even though you can have nested lists, you don't escape this idea of side effects. So first, I'm going to create warm is equal to these two colors, yellow, orange. So warm points to these two colors. Hot is equal to this one list, a list with one element. Bright colors is going to be a list. And the element inside the list is a list itself. So since it's a list, this is your list. And the element inside here, which is a list itself, is actually just pointing to whatever warm is. That object. Then I append hot to my bright colors. So the next element here is going to be another list, which means it's just pointing to this other list here. It's not creating a copy of it. So each one of these elements here is actually just pointing to these two lists here. So if I modified either one of these, then bright colors would also be modified. So let's see. So let's say I add pink here to my hot list. We have red and pink. Then notice that bright colors, the first element points to this list. And the second element points to this list, which I've just modified. Last thing is I'll let you try this as an exercise in Python Tutor. But the idea here being you should be careful as you're writing a for loop that iterates over a list that you're modifying inside the list. In this case, I'm trying to go ahead and write a list. And I'm going to do that. And then I'm going to do that. And then I'm going to do that. And then I'm going to do that. And then I'm going to do that. And then I'm going to go through the list L1. And if I find an item that's in L1 and L2, I want to delete it from L1. So 1 and 2 are also in L2. So I want to delete them from L1 and be left with 3, 4. However, the code on the left here doesn't actually do what I think it's doing. Because here, I'm modifying a list as I'm iterating over it. And behind the scenes, Python keeps track of the index and doesn't update the index. As it's as you're changing the list. So it figures out the length of the list to begin with and how many indices it has and doesn't update it as you're removing items from the list. So the solution to that is to make a copy of the list first, iterate over the copy, which will remain intact, and modify the list that you want to modify inside the loop. So please run both of these in the Python tutor. And you'll see that. What ends up happening is on the left, you're going to skip over one element. So that's going to be the wrong code.",
+    "chunks": [
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 0.72,
+            "end": 13.96,
+            "text": " The following content is provided under a Creative Commons license. Your support will help MIT OpenCourseWare continue to offer high quality educational resources for free. To make a donation or view additional materials"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 13.96,
+            "end": 37.6,
+            "text": " from hundreds of MIT courses, visit MIT OpenCourseWare at ocw.mit.edu. A quick, quick recap of what we did last time. So last time we introduced this idea of decomposition and abstraction,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 37.6,
+            "end": 50.8,
+            "text": " and we started putting that into our programs. These were sort of high level concepts, and we achieved them using these concrete things called functions in our programs. And functions allowed us to create code that was coherent,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 50.8,
+            "end": 62.0,
+            "text": " that had some structure to it, and was reusable. And from now on in problem sets and in lectures, I'm going to be using the code that I've used in the last two years. And I'm going to be using functions a lot,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 62.0,
+            "end": 73.48,
+            "text": " so make sure that you understand how they work and all of those details. So today we're going to introduce two new data types. And they're called compound data types because they're actually data types that are made up"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 73.48,
+            "end": 88.06,
+            "text": " of other data types, particularly ints, floats, booleans, and strings. And actually not just these, but other data types as well. So that's why they're called compound data types. So we're going to look at a new data type called a tuple"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 88.06,
+            "end": 104.14,
+            "text": " and a new data type called a list. And then we're going to talk about these ideas that come about specifically with lists. All right, so let's go right into tuples. So if you recall strings, strings"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 104.14,
+            "end": 117.53999999999999,
+            "text": " were sequences of characters. Tuples are going to be similar to strings in that they're going to be sequences of something. Except that tuples aren't just sequences of characters, they can be sequences of anything."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 117.53999999999999,
+            "end": 134.62,
+            "text": " They're a collection of data where that data can be of any type. So a tuple can contain elements that are integers, floats, strings, and so on. Tuples are immutable."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 134.62,
+            "end": 144.92000000000002,
+            "text": " And if you recall, we talked about this word a little bit when we talked about strings. So that means once you create a tuple object, you can't modify it. Just like when you created a string object,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 144.92000000000002,
+            "end": 162.72,
+            "text": " you weren't able, you were not allowed to modify it. So the way we create tuples are with these open and close parentheses. This shouldn't be confused with a function, because there's nothing, there's no, this isn't a function call."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 162.72,
+            "end": 174.92000000000002,
+            "text": " It's just how you represent a tuple. For a function call, you'd have something right before the parentheses. This is just how we chose to represent a tuple. And just a plain open and close parentheses"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 174.92000000000002,
+            "end": 180.48,
+            "text": " represents an empty tuple. So it's of length 0. There's nothing in it. OK. Whoops."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 180.48,
+            "end": 195.82,
+            "text": " You can create a tuple that contains some elements by separating each element with a comma. So in this case, this is a tuple that can be accessed with a variable t that contains three elements. The first is an integer."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 195.82,
+            "end": 210.45999999999998,
+            "text": " The second is a string. And the third is another integer. Much like strings, we can index into tuples to find out values at particular indices. So you read this as t at position 0."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 210.45999999999998,
+            "end": 226.07999999999998,
+            "text": " So the tuple represented by a variable t at position 0 will evaluate to 2, because again, we start counting from 0 in computer science. So that gives us the first element. Just like strings, we can concatenate tuples together."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 226.07999999999998,
+            "end": 244.0,
+            "text": " That just means add them together. So if we add these two tuples together, we just get back one larger tuple that's just those two, the elements of those tuples. Just put together in one larger tuple. Again, much like strings, we can slice into tuples."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 244.0,
+            "end": 265.46,
+            "text": " So t slice from index 1 until index 2. Remember, we go until this stop at minus 1. So this only gives us one element inside the tuple. And this is not a mistake. This extra comma here actually represents a tuple object."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 265.46,
+            "end": 277.32,
+            "text": " OK. If I didn't have this comma here, then this would just be a string. The parentheses wouldn't really make any difference. But the comma here makes it clear to Python"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 277.32,
+            "end": 292.08,
+            "text": " that this is a tuple with only one element in it. We can slice even further to get a tuple with two elements. And we can do the usual operations, like get the length of a tuple, which says how many elements are in my tuple."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 292.08,
+            "end": 307.56,
+            "text": " And len of this t would evaluate to 3, because there are three elements inside the tuple. Each element, again, separated by the comma. And just like strings, if we try to change a value inside the tuple, in this case, I wanted"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 307.56,
+            "end": 326.4,
+            "text": " to try to change the value of the second element to 4. Python doesn't allow that, because tuples are immutable. OK. So why would we want to use tuples? Tuples are actually useful in a couple ways."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 326.4,
+            "end": 339.94,
+            "text": " There are a couple of different scenarios. So recall, a few lectures ago, we looked at this code where we tried to swap the values of variables x and y. And this first code actually didn't work, because you're"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 339.94,
+            "end": 351.23999999999995,
+            "text": " overwriting the value for x. So instead, what we ended up doing was creating this temporary variable, where we stored the value of x, and then we overwrote it, and then we used the temporary variable."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 351.23999999999995,
+            "end": 366.64,
+            "text": " Well, it turns out this three-liner code right here can actually be written in one line using tuples. So you say x comma y is equal to y comma x. And Python goes in and says, what's the value of y? And assigns it to x."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 366.64,
+            "end": 385.4,
+            "text": " And then what's the value of x? And assigns it to y. Extending on that, we can actually use tuples to return more than one value from a function. So functions, you're only allowed to return one object."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 385.4,
+            "end": 399.47999999999996,
+            "text": " OK. So you're not allowed to return more than one object. However, if we use a tuple object, and if that's the thing that we return, we can actually get around this sort of rule"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 399.47999999999996,
+            "end": 413.91999999999996,
+            "text": " by putting in as many values as we want inside the tuple object. And then we can return as many values as we'd like. So in this specific example, I'm trying to calculate the quotient and remainder when we divide x by y."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 413.91999999999996,
+            "end": 436.64,
+            "text": " So this is a function definition here. And down here, I'm calling the function with 4 and 5. So when I make the function call, 4 gets assigned to x, and 5 gets assigned to y. So then q is going to be the integer division"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 436.64,
+            "end": 450.12,
+            "text": " when x is divided by y. And this double slash just means it's like casting the result to an integer. It says divide it. Keep the whole number part and just delete everything else"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 450.12,
+            "end": 463.26,
+            "text": " beyond the decimal point. So when you divide 4 by 5, this q is actually going to be 0. It's 0 point something, and I don't care about the point something. And then the remainder is just using the percent operator."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 463.26,
+            "end": 474.88,
+            "text": " So when I divide 4 by 5, the remainder is going to be 4. And notice that I'm going to be returning q and r, which are these two values that I calculated inside my function. And I'm returning them in the context."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 474.88,
+            "end": 481.09999999999997,
+            "text": " OK. So I'm going to return the value of the function. And I'm returning the value of the function. And that's going to be the context of this tuple. So I'm only returning one object, which is a tuple."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 481.09999999999997,
+            "end": 494.15999999999997,
+            "text": " It just so happens that I'm populating that object with a few different values. OK. So when the function returns here, this is going to say 0 comma 4."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 494.15999999999997,
+            "end": 507.64,
+            "text": " That's the tuple it's going to return. Q is going to be 0 and r is going to be 4. So then this line here, quote rem equals 0, 4, is basically this little. It's sort of like what we did up here."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 507.64,
+            "end": 521.76,
+            "text": " So it assigns quote to 0 and rem to 4. So we can use tuples. This is very useful. We can use them to return more than one value from a function."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 521.76,
+            "end": 533.66,
+            "text": " So tuples are great. Might seem a little bit confusing at first, but they're actually pretty useful because they hold collections of data. So here I wrote a function which I"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 533.66,
+            "end": 543.9,
+            "text": " can apply to any set of data. And I'll explain what this function does, and then we can apply it to some data. And you can see that you can extract some very basic information from whatever set of data"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 543.9,
+            "end": 557.18,
+            "text": " that you happen to collect. So here's a function called getData, and it does all of this stuff in here. And in the actual code associated with the lecture, I actually said what the condition on a tuple was."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 557.18,
+            "end": 567.16,
+            "text": " So it has to be a tuple of a certain, that looks a certain way. And then I'll just say, OK, I'm going to do a little bit of math. And this is the way that it has to look."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 567.16,
+            "end": 581.04,
+            "text": " So it's one tuple. The outer parentheses out here represent the fact that it's a tuple. And the elements of this tuple are actually other tuples. So the first element's a tuple object,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 581.04,
+            "end": 593.66,
+            "text": " the second element's a tuple object, and third one's a tuple object, and so on. And each one of these inner tuple objects are actually going to contain two elements, the first being an integer."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 593.66,
+            "end": 610.3399999999999,
+            "text": " And the second being a string. So that's sort of the precondition that this function assumes on a tuple before it can work. All right. So given a tuple that looks like that,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 610.3399999999999,
+            "end": 623.62,
+            "text": " what's the function going to do? It's first creating two empty tuples. One is called nums, and one is called words. And then there's a for loop. And notice here, the for loop is going"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 623.62,
+            "end": 636.5,
+            "text": " to iterate over every element inside the tuple. Remember in strings, when we were able to use for loops that iterated over the characters directly as opposed over the indices? Well, we're doing the same sort of thing here."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 636.5,
+            "end": 651.8,
+            "text": " Instead of iterating over the indices, we're going to iterate over the tuple object at each position. So first time through the loop, t here is going to be this first tuple. The second time through the loop, t is going to be this tuple."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 651.8,
+            "end": 662.78,
+            "text": " And the third time, it's going to be this exact tuple. So each time through the loop, what I'm doing is I'm going to have this nums tuple that I'm going to keep adding to. And each time, I'm going to create a new object"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 662.78,
+            "end": 677.16,
+            "text": " and reassign it to this variable nums. And each time through the loop, I'm looking at what the previous value of nums was. So what was my previous tuple? And I'm going to add it with this singleton tuple."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 677.16,
+            "end": 692.34,
+            "text": " So it's a tuple of one character or one element. And then I'm going to add it to this singleton tuple. OK. And this element being t at position 0. So you have to sort of wrap your mind around how this is working."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 692.34,
+            "end": 709.46,
+            "text": " So if t is going to be this tuple element right here, then t at position 0 is going to be this blue bar here. So it represents the integer portion of the tuple. So as we're going through the loop, this nums is going to get populated"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 709.46,
+            "end": 729.5600000000001,
+            "text": " with all of the integers from every one of my tuple inside of my inner tuple objects. So that's basically what this line here is doing. At the same time, I'm also populating this words tuple. And the words tuple is a little bit different,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 729.5600000000001,
+            "end": 742.9,
+            "text": " because I'm not adding every single one of these string objects, so t at position 1 being the string part of the inner tuple. I'm actually adding the string part only if it's not already in my words list."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 743.22,
+            "end": 758.9,
+            "text": " OK. So here, I'm essentially grabbing all of the unique strings from my list. These last sort of three lines, three, four lines here, just do a little bit of arithmetic on it, saying, OK,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 758.9,
+            "end": 772.78,
+            "text": " now I have all of the numbers here. What's the minimum out of all of these? And then what's the maximum out of all of these? And then this unique words variable tells me how many unique words do I have in my original tuple."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 773.22,
+            "end": 794.24,
+            "text": " So this feels sort of generic, so let's run it on some data. So here, I tested it on some test data. And then I got some actual data. And this actual data that I wanted to analyze was Taylor Swift data."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 794.24,
+            "end": 807.84,
+            "text": " And representing the integer portion of the tuple representing a year, and the string portion of the tuple representing. OK. So this is the person who she wrote a song about that year."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 807.84,
+            "end": 821.46,
+            "text": " OK. So some real world data that we're working with here. Very important that we know this information. OK. So with this data, I can run it."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 821.46,
+            "end": 840.78,
+            "text": " I can plug it into this function that I wrote up here. And I'm going to actually comment this out so it doesn't get cluttered. And if I run it. This is the part where I'm calling my function."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 840.78,
+            "end": 858.0799999999999,
+            "text": " I'm calling it with this data here. T Swift being this tuple of tuples. And what I get back is up here, line 38, is the return from the function being a large tuple. And that large tuple, I'm then assigning it"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 858.0799999999999,
+            "end": 867.02,
+            "text": " to my own tuple in my program. And then I'm just writing out, printing out, some statement. And then I'm just going to write out the number of people that I have in here. OK."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 867.02,
+            "end": 879.52,
+            "text": " So I'm getting the minimum year, the maximum year, and then the number of people. So I can show you that it works if I replace one of these names with another one that I already have in here. So instead of writing a song about five people,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 879.52,
+            "end": 891.02,
+            "text": " she would have wrote a song about four people. Yay, it worked. OK. OK. So that's tuples."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 891.02,
+            "end": 897.32,
+            "text": " And remember. Or recall. Keep it in mind. Keep in mind, tuples were immutable. Now we're going to look at a very, very similar data"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 897.32,
+            "end": 914.1,
+            "text": " structure to tuples called lists. Except that instead of lists being immutable, lists are going to be mutable objects. So much like lists, they're going to contain elements of any type or objects of any type."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 914.1,
+            "end": 931.5600000000001,
+            "text": " You denote a list with square brackets instead of parentheses. And the difference being that they're going to be mutable objects instead of immutable. So creating an empty list, you just do open, close square brackets."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 931.5600000000001,
+            "end": 951.42,
+            "text": " You can have a list of elements of different types, even a list of lists. So one of the elements being a list. As usual, you can apply length on a list. And that tells you how many elements are in it."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 951.42,
+            "end": 959.9799999999999,
+            "text": " This is going to tell you how many elements are in your list l. So it's not going to look any further than that. So it's going to say this is an integer. This is a string."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 959.9799999999999,
+            "end": 973.9799999999999,
+            "text": " This is an integer. This is a list. It's not going to say how many elements are in this list. It's just going to look at the outer shell of elements. Indexing and slicing works the same way."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 973.9799999999999,
+            "end": 988.3000000000001,
+            "text": " So l at position 0 gives you the value 2. You can index into a list and then do something with the value that you get back. So l at position 2 says that's this value there, and add 1 to it."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 988.3000000000001,
+            "end": 1000.96,
+            "text": " l at position 3, that's going to be this list here. Notice it evaluates to another list. You're not allowed to index outside of the length of the list. So that's going to give you an error,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1000.96,
+            "end": 1017.9200000000001,
+            "text": " because we only have four elements. And you can also have expressions for your index. So this Python just replaced. It replaces i with 2 here and says, what's l at position 1? And it grabs that from in there."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1017.9200000000001,
+            "end": 1031.6000000000001,
+            "text": " So very, very similar to the kinds of operations we've seen on strings and tuples. The one difference, and that's what we're going to focus on for the rest of this class, is that lists are mutable objects."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1031.6000000000001,
+            "end": 1040.8400000000001,
+            "text": " So what does that mean internally? Internally, that means let's say we have a list l, and we assign it. Sorry, let's say we have a variable l that's going to point to a list."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1040.84,
+            "end": 1058.08,
+            "text": " So let's say we have a list with three elements, 2, 1, and 3. Each element is an integer. When we were dealing with tuples or with strings, if we reassigned, if we tried to do this line right here, we had an error."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1058.08,
+            "end": 1073.34,
+            "text": " But this is actually allowed with lists. So when you execute that line, Python's going to look at that middle element, and it's going to change its value from a 1 to a 5. And that's just due to the mutability nature of the list."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1076.9399999999998,
+            "end": 1091.8999999999999,
+            "text": " So notice that this list variable, this variable l, which originally pointed to this list, points to the exact same list. We haven't created a new object in memory. We're just modifying the same object in memory."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1091.8999999999999,
+            "end": 1114.36,
+            "text": " And you're going to see why this is important as we look at a few side effects that can happen when you have this. So I've said this a couple of times before, but it'll make your life a lot easier if you try to think of,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1114.36,
+            "end": 1123.56,
+            "text": " when you want to iterate through a list, if you try to think about iterating through the elements directly. It's a lot more Pythonic. I've used that word before."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1123.56,
+            "end": 1129.9399999999998,
+            "text": " So this is sort of a common pattern that you're going to see where you're iterating over the list elements directly. Right? We've done it over tuples."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1129.9399999999998,
+            "end": 1144.9,
+            "text": " We've done it over strings. We've done it over strings. So these are identical codes. They do the exact same thing, except on the left, you're going through 0, 1, 2, 3, and so on."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1144.9,
+            "end": 1160.26,
+            "text": " And then you're indexing into each one of these numbers to get the element value. Whereas on the right, this loop variable i is going to have the element value itself. Right?"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1160.26,
+            "end": 1165.46,
+            "text": " So this code on the right is a lot cleaner. OK. So now let's look at some operations that we can do on lists. OK?"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1165.46,
+            "end": 1174.86,
+            "text": " So there's a lot more operations that we can do on lists because of their mutability aspect than we can do on tuples or strings, for example. OK? So here's a few of them."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1174.86,
+            "end": 1185.8799999999999,
+            "text": " And they're going to take advantage of this mutability concept. So we can add elements directly to the end of the list using the same method. So if I want to do this, I can do this."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1185.8799999999999,
+            "end": 1189.8799999999999,
+            "text": " And then I can do this. And then I can do this. And then I can do this. And then I can do this. And then I can do this."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1189.88,
+            "end": 1204.64,
+            "text": " Using this funky looking notation l.append. And then the element we want to add to the end. And this operation mutates the list. So if I have l is equal to 2, 1, 3, and I append the element 5 to the end,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1204.64,
+            "end": 1218.98,
+            "text": " then the same l is going to point to the same object, except it's going to have an extra number at the end, 5. But now, what's this dot? We haven't really seen this before. OK?"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1218.98,
+            "end": 1235.8200000000002,
+            "text": " And then, what's this dot? It's going to become apparent what it means in a few lectures from now. But for the moment, you can think of this dot as an operation. It's like applying a function, except that the function"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1235.8200000000002,
+            "end": 1248.0600000000002,
+            "text": " that you're applying can only work on certain types of objects. OK? So in this case, append, for example, is the function we're trying to apply."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1248.0600000000002,
+            "end": 1265.5400000000002,
+            "text": " And we want to apply it to. Whatever is before the dot, which is the object. And append has only been defined to work with a list object, for example, which is why we're using the dot in this case. We wouldn't be able to use append on an integer,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1265.5400000000002,
+            "end": 1283.38,
+            "text": " for example, because that sort of function is not defined on an integer. So for now, you'll sort of have to remember which are functions that work with a dot, and which are functions like len that aren't with a dot."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1283.38,
+            "end": 1295.64,
+            "text": " But in a couple lectures, I promise it'll be a lot clearer. OK? So for now, just think of it as whatever is before the dot is the object you're applying a function to. And whatever is after the dot is the function"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1295.64,
+            "end": 1305.88,
+            "text": " you're applying on the object. OK. OK. So we can add things to the end of our list. We can also combine lists together"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1305.88,
+            "end": 1311.56,
+            "text": " using the plus operator. OK? The plus operator is the function. OK? The plus operator does not mutate the list."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1311.56,
+            "end": 1322.28,
+            "text": " OK? Instead, it gives you a new list that's the sum of those two lists combined. So in this case, if l1 is 2, 1, 3, and l2 is 4, 5, 6, when we add those two lists together,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1322.28,
+            "end": 1338.78,
+            "text": " that's going to give us an entirely new list, leaving l1 and l2 the same. And that's why we have to assign the result of the addition to a new list. Otherwise, the result's lost."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1338.78,
+            "end": 1358.8,
+            "text": " If you want to mutate a list directly and make it longer by the elements within another list, then you can use this extend function or extend method. OK? And this is going to mutate l1 directly."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1358.8,
+            "end": 1377.8400000000001,
+            "text": " So if l1 was 2, 1, 3, if you extend it by the list 0, 6, it's just going to tack on 0, 6 to l1 directly. So notice l1 has been muted. OK? OK."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1377.8400000000001,
+            "end": 1387.0,
+            "text": " So that's adding things to lists. We can also delete things from lists. Right? We don't just want to keep adding to our lists because then they become very, very big."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1387.0,
+            "end": 1402.94,
+            "text": " So let's see how we can delete some items from our list. There's a few ways. First one being you can use this del function. And this says delete from the list l. So you can delete the element at this index."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1402.94,
+            "end": 1414.24,
+            "text": " OK? So you give it the index 0, 1, 2, or whatever index you want to delete the element at. If you just want to delete the element at the end of the list, that's the farthest right, you do l.pop."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1414.24,
+            "end": 1427.28,
+            "text": " If you want to remove a specific element so you know there's somewhere in your list there's the number 5 and you want to delete it from the list, then you say l.remove and you say what element you want to remove."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1427.28,
+            "end": 1433.2,
+            "text": " And that only removes the very first element. OK? So if you have a list that's going to be a list, then you're going to remove the very first occurrence of it."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1433.2,
+            "end": 1446.7,
+            "text": " So if there's two 5s in your list, then it's only going to remove the very first one. OK? So let's take a look at this sort of sequence of commands. So we have first l is equal to this long list here."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1446.7,
+            "end": 1455.7,
+            "text": " OK? And I want to mention that all of these operations are going to mutate our list, which is why I wrote this comment here that says, assume that you're doing these in order."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1455.7,
+            "end": 1460.72,
+            "text": " OK? So as you're doing these in order, you're going to be mutating your list. And if you're mutating your list, you have to remember that you're working"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1460.72,
+            "end": 1473.32,
+            "text": " with this new mutated list. OK? So the first thing we're doing is we're removing 2 from our list. So when you remove 2, this says look for an element with a value"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1473.32,
+            "end": 1487.3600000000001,
+            "text": " 2 and take it away from the list. So that's the very first one here. So the list we're left with is just everything after it. Then I want to remove 3 from the list. And notice there's two of them."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1487.3600000000001,
+            "end": 1499.92,
+            "text": " There's this 3 here. And there's this 3 here. So we're going to remove only the first one, which is this one here. So the list we're left with is 1, 6, 3, 7, 0."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1499.92,
+            "end": 1511.0400000000002,
+            "text": " Then we're going to delete from the list l the element at position 1. So starting counting from 0, the element at position 1 is this one here. So we've removed that."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1511.0400000000002,
+            "end": 1521.52,
+            "text": " And we're left with 1, 3, 7, 0. And then when we do l.pop, that's going to delete the element. And we're going to refer this to the right, so at the end of the list, which is that 0."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1526.22,
+            "end": 1540.8600000000001,
+            "text": " So then we're left with only 1, 3, and 7. And l.pop is often useful because it tells you the return value from l.pop is going to be the value that it removed. So in this case, it's going to return 0."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1544.46,
+            "end": 1560.52,
+            "text": " I want to mention, though, that some of the so these functions, if you take a look at the list, you have to be careful with return values. So you can think of all of these as functions that operate on a list, except that what these functions do"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1560.52,
+            "end": 1575.96,
+            "text": " is they take in the list and they modify it. But as functions, they obviously return something back to whoever called them. And oftentimes, they're going to return the value none. So for example, if you are going to do l.remove2,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1575.96,
+            "end": 1588.8,
+            "text": " and you print that out, that might print out none for you. OK? So you can't just assign the value of this to a variable and expect it to be the mutated list, right? The list got mutated."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1588.8,
+            "end": 1599.64,
+            "text": " The list that got mutated is the list that was passed into here. We're going to look at one example in a few slides that's going to show this. OK. Another thing that we can do, and this is often useful when"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1599.64,
+            "end": 1616.3600000000001,
+            "text": " you're working with data, is to convert lists to strings and then strings to lists. Sometimes it might be useful to work with strings, as opposed to a list, and vice versa. So this first line here, listS, takes in a string"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1616.3600000000001,
+            "end": 1632.06,
+            "text": " and casts it to a list. So much like we cast a float to an integer, for example, you're just casting a string to a list here. And when you do that at this line, so if this is your s here, when you do listS, this is going to give you a list."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1632.06,
+            "end": 1641.78,
+            "text": " Looks like this, where every single character in s is going to be its own element. So that means every. So the character is going to be a string, and it's going to be separated by a comma, so including spaces."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1645.34,
+            "end": 1656.1799999999998,
+            "text": " Sometimes you don't want each character in the list to be its own element. Sometimes you want, for example, if you're given a sentence, you might want to have everything in between spaces being its own element."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1656.1799999999998,
+            "end": 1674.34,
+            "text": " So that'll give you every word in the sentence, for example. In that case, you're going to use split. In this case, I've split over the less than sign, but again, if you're doing the sentence example, you might want to split on the space."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1674.34,
+            "end": 1692.16,
+            "text": " So this is going to take everything in between the sign that you're interested in, in this case, the less than sign, and it's going to set it as a separate element in the list. So that's how you convert strings to lists."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1692.16,
+            "end": 1705.1,
+            "text": " And sometimes you're given a list, and you might want to convert it to a string, so that's where this join. So this method or function is useful. So this is an empty string, so it's just open, close, quote,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1705.1,
+            "end": 1718.28,
+            "text": " right away, no space. So this just joins every one of the elements in the list together, so to return the string abc. And then you can join on any character that you would want. So in this case, you can join on the underscore."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1718.28,
+            "end": 1730.8,
+            "text": " So it'll put whatever characters in here in between every one of the elements in your list. Pretty useful functions. OK. A couple other operations we can do on lists,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1730.8,
+            "end": 1749.56,
+            "text": " and these are also pretty useful, is to sort lists and to reverse lists, and many, many others in the Python documentation. So sort and sorted both sort lists, but one of them mutates the list, and the other one does not."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1749.56,
+            "end": 1766.98,
+            "text": " And sometimes it's useful to use one, and sometimes it's useful to use the other. So if I have this list l is equal to 9, 6, 0, 1, 2, 3, 4, 5, 0, 3, sorted, you can think of it as give me the sorted version of l."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1766.98,
+            "end": 1782.6,
+            "text": " Gives you back the sorted version of l, so it returns a new list that's the sorted version of the input list and does not mutate l. So it keeps l the exact same way. So this will be replaced by the sorted version"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1782.6,
+            "end": 1795.94,
+            "text": " of the list, which you can assign to a variable and then do whatever you want with it, like l2 is equal to 0. So it's going to be the same as l2 sorted l, for example. And it keeps l the same."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1795.94,
+            "end": 1817.14,
+            "text": " On the other hand, if you just want to mutate l and you don't care about getting another copy that's sorted, you just do l.sort, and that's going to automatically sort l for you, and l is now the sorted version of l. Similarly, reverse is going to take l and reverse all"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1817.14,
+            "end": 1826.52,
+            "text": " the characters. It's going to take all the elements in it. So the last one's the first one. The second last one is the second one and so on. So lists are mutable."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1826.52,
+            "end": 1843.58,
+            "text": " We've said that so many times in this lecture. But what exactly does that mean? What implications does that have? Once again, this next part of the lecture Python tutor. Just paste all the code in and go step by step"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1843.58,
+            "end": 1849.1599999999999,
+            "text": " to see exactly what's happening. 0. 0. 0. So lists are mutable."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1852.52,
+            "end": 1868.48,
+            "text": " As you have variable names, so for example, l is equal to some list, that l is going to be pointing to the list in memory. And since it's a mutable object, this list, you can have more than one variable that"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1868.48,
+            "end": 1883.56,
+            "text": " points to the exact same object in memory. And if you have more than one variable that points to the same object in memory, if that object in memory is changed, then when you access it through any one of these variables,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1883.56,
+            "end": 1898.04,
+            "text": " they're all going to give you the changed object value. So the key phrase to keep in mind when you're dealing with lists is what side effects could happen. If you're mutating a list, if you're"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1898.04,
+            "end": 1913.36,
+            "text": " doing operations on lists, what side effects, what variables might be affected by this change? Let's come back. Let's come back down to Earth for a second. This will wake a lot of people up."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1913.36,
+            "end": 1926.8,
+            "text": " So let's do an analogy with people. Let's say we have a person. A person, in this case, Justin Bieber, is going to be an object. I'm an object."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1926.8,
+            "end": 1932.98,
+            "text": " I'm like the number three. Bieber's an object. He's like number five. We're different objects. We're both of type people."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1934.9399999999998,
+            "end": 1946.66,
+            "text": " OK. Let's say we have a person. Let's say a person has different attributes. Let's say he gets two attributes to begin with. He's a singer and he's rich."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1950.52,
+            "end": 1963.46,
+            "text": " I can refer to this person object by many different names. His full name, his stage name, all of the fangirls call him by these names. People who dislike him call him by other names that I didn't put up here."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1963.46,
+            "end": 1971.6399999999999,
+            "text": " But he's known by all these different names. They're all aliases or nicknames. They're all nicknames that point to this same person object. Right? OK."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1971.6399999999999,
+            "end": 1984.36,
+            "text": " So originally, let's say I say Justin Bieber is a singer and rich. Those are the two attributes I've originally assigned to him. And then let's say I want to assign a different attribute to him and say Justin Bieber is a singer, a rich,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1984.36,
+            "end": 1995.7,
+            "text": " and a troublemaker. I'm being kind here. OK. So if I say Justin Bieber has these three attributes, so it's the same person I'm referring to, then all of his"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 1995.7,
+            "end": 2005.3799999999999,
+            "text": " nicknames. Right? Are going to refer to this exact same person. So all of his nicknames are going to, or aliases, will refer to the same person object, right,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2005.3799999999999,
+            "end": 2019.4399999999998,
+            "text": " with these changed attributes. Does that make sense? OK. So that sort of idea arises in lists. So list is like a person object whose attributes"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2019.4399999999998,
+            "end": 2031.0,
+            "text": " can change, for example. And as they change, all of the different aliases for this object will point to this changed object. OK. So let's see a few examples."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2031.0,
+            "end": 2042.36,
+            "text": " I apologize if this is a little small. But this I basically copy and pasted from the Python tutor, which is just from the code from today's lecture. OK."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2042.36,
+            "end": 2052.7599999999998,
+            "text": " So I have these lines of code here. The first couple of lines really just show what happens when you're dealing with non-mutable objects. So with non-mutable objects, you have two separate objects"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2052.7599999999998,
+            "end": 2057.8199999999997,
+            "text": " that get their own values. And that's it. End of story. OK. So I have this list."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2057.8199999999997,
+            "end": 2071.3999999999996,
+            "text": " With lists, however, there's something different that happens. So I have warm is a variable. And it's going to be equal to this list. So warm is going to point to this list here, red, yellow,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2071.3999999999996,
+            "end": 2084.16,
+            "text": " orange. It contains three elements. Hot is equal to warm. It means I'm creating an alias for this list. And the alias is going to be with this variable hot."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2084.16,
+            "end": 2098.8599999999997,
+            "text": " So notice warm and hot point to the exact, same object. So on line 8, when I append this string pink to my object, since both of these two variables point to the exact same object, if I'm"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2098.8599999999997,
+            "end": 2113.3999999999996,
+            "text": " trying to access this object through either variable, they're both going to print out the same thing. And that's the side effect. That's the side effect of lists being mutable. OK."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2115.7,
+            "end": 2132.08,
+            "text": " So I have a list. If you want to create an entirely new copy of the list, then you can clone it, which sounds really cool. But really, it's just making a copy of the list. And you clone it using this little notation"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2132.08,
+            "end": 2142.04,
+            "text": " here, which is open, close, square brackets with a colon. And we've sort of seen this notation here. And this tells Python this is 0. Sorry. This is 0."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2142.04,
+            "end": 2152.52,
+            "text": " And this is length. Cool. I guess. But it basically says, take every element, create a new list with those exact same elements,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2152.52,
+            "end": 2167.8999999999996,
+            "text": " and assign it to the variable chill. So here, if I originally have cool is equal to blue, green, gray right here, when I clone it on line 2 with that funky notation, I'm creating a new copy of it."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2167.8999999999996,
+            "end": 2192.2,
+            "text": " And then on the next line, when I'm appending another element to the copy, notice I'm just altering the copy. The original stayed the same because I've cloned it. So if you don't want to have this side effect issue, then you should clone your list."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2192.2,
+            "end": 2205.5,
+            "text": " OK. So let's see a slightly more complicated example where you're going to see the difference between sort and sorted in the context of this. OK."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2205.5,
+            "end": 2219.96,
+            "text": " So sort.sort.mutability and side effects issue. OK. So once again, let's create this warm is equal to red, yellow, orange. So that's what warm is going to point to this list."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2219.96,
+            "end": 2235.42,
+            "text": " And then sorted warm is equal to warm.sort. So .sort mutates. So as soon as I do that, that list warm is now the sorted version of it. And notice that I've assigned the return."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2235.42,
+            "end": 2253.1800000000003,
+            "text": " return of this to sorted warm. And the return is none because l.sort or .sort mutated the list. It didn't return a sorted version of the list. It mutated the list itself."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2253.1800000000003,
+            "end": 2271.58,
+            "text": " So when I print warm and I print sorted warm, I'm printing the mutated version and then this none here. Sorted, on the other hand, returns. It doesn't sort it, does not sort the list that's given to it."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2271.58,
+            "end": 2287.1,
+            "text": " And instead, it returns a sorted version of the list. So in this case, if cool is equal to these three colors, gray, green, blue, if I do sorted cool, it's going to return the sorted version of that list, which is blue, green, gray."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2287.1,
+            "end": 2303.68,
+            "text": " And it's assigned to the variable sorted cool. So when I print them, it's going to show me the two separate lists, one being the original unsorted one and one being the sorted version. Last one's a little bit more complicated,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2303.68,
+            "end": 2329.0,
+            "text": " but it shows that even though you can have nested lists, you don't escape this idea of side effects. So first, I'm going to create warm is equal to these two colors, yellow, orange. So warm points to these two colors."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2329.0,
+            "end": 2348.24,
+            "text": " Hot is equal to this one list, a list with one element. Bright colors is going to be a list. And the element inside the list is a list itself. So since it's a list, this is your list. And the element inside here, which is a list itself,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2348.24,
+            "end": 2364.6800000000003,
+            "text": " is actually just pointing to whatever warm is. That object. Then I append hot to my bright colors. So the next element here is going to be another list, which means it's just"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2364.6800000000003,
+            "end": 2377.5600000000004,
+            "text": " pointing to this other list here. It's not creating a copy of it. So each one of these elements here is actually just pointing to these two lists here. So if I modified either one of these,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2377.5600000000004,
+            "end": 2390.8199999999997,
+            "text": " then bright colors would also be modified. So let's see. So let's say I add pink here to my hot list. We have red and pink. Then notice that bright colors, the first element"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2390.8199999999997,
+            "end": 2400.66,
+            "text": " points to this list. And the second element points to this list, which I've just modified. Last thing is I'll let you try this as an exercise in Python Tutor."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2400.66,
+            "end": 2409.72,
+            "text": " But the idea here being you should be careful as you're writing a for loop that iterates over a list that you're modifying inside the list. In this case, I'm trying to go ahead and write a list. And I'm going to do that."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2409.72,
+            "end": 2412.22,
+            "text": " And then I'm going to do that. And then I'm going to do that. And then I'm going to do that. And then I'm going to do that. And then I'm going to go through the list L1."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2412.22,
+            "end": 2425.54,
+            "text": " And if I find an item that's in L1 and L2, I want to delete it from L1. So 1 and 2 are also in L2. So I want to delete them from L1 and be left with 3, 4. However, the code on the left here"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2425.54,
+            "end": 2442.68,
+            "text": " doesn't actually do what I think it's doing. Because here, I'm modifying a list as I'm iterating over it. And behind the scenes, Python keeps track of the index and doesn't update the index. As it's as you're changing the list."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2442.68,
+            "end": 2461.5,
+            "text": " So it figures out the length of the list to begin with and how many indices it has and doesn't update it as you're removing items from the list. So the solution to that is to make a copy of the list first, iterate over the copy, which will remain intact,"
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2461.5,
+            "end": 2474.76,
+            "text": " and modify the list that you want to modify inside the loop. So please run both of these in the Python tutor. And you'll see that. What ends up happening is on the left, you're going to skip over one element."
+        },
+        {
+            "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
+            "start": 2474.76,
+            "end": 2477.02,
+            "text": " So that's going to be the wrong code."
+        }
+    ]
+}

@@ -1,4 +1,6 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, jsonify
+from process_query import final_response
+
 
 app = Flask(__name__)
 
@@ -8,41 +10,17 @@ def get_course_data():
     Sample in-memory data. Replace with a database in a real app.
     """
     return {
-        "title": "Python for Beginners",
-        "description": "Learn Python step by step with a sequence of short, focused video lessons.",
-        "instructor": "Dr. Jane Doe",
+        "title": "Python for beginner",
+        "description": "Learn Python for Data Science step by step with a sequence of short, focused video lessons.",
+        "instructor": "Dr. Ujjwal Chandel",
         "lectures": [
             {
                 "id": 1,
-                "title": "Introduction & Setup",
+                "title": "Tuples, Lists, Aliasing, Mutability, and Cloning",
                 "duration": "08:32",
-                "thumbnail": "thumbnails/sddefault.webp",
-                "video_path": "videos/lecture1.mp4",
-                "summary": "Overview of the course, tools you need, and how to follow along."
-            },
-            {
-                "id": 2,
-                "title": "Python Basics: Variables & Types",
-                "duration": "12:10",
-                "thumbnail": "thumbnails/sddefault.webp",
-                "video_path": "videos/lecture2.mp4",
-                "summary": "Understanding variables, basic data types, and simple operations."
-            },
-            {
-                "id": 3,
-                "title": "Control Flow: If, For, While",
-                "duration": "15:45",
-                "thumbnail": "thumbnails/sddefault.webp",
-                "video_path": "videos/lecture3.mp4",
-                "summary": "Learn how to make decisions and repeat actions with control statements."
-            },
-            {
-                "id": 4,
-                "title": "Functions & Modules",
-                "duration": "14:05",
-                "thumbnail": "thumbnails/sddefault.webp",
-                "video_path": "videos/lecture4.mp4",
-                "summary": "Organize your code with functions and reuse logic across files."
+                "thumbnail": "thumbnails/image.png",
+                "video_path": "videos/MIT6_0001F16_Lecture_05_300k.mp4",
+                "summary": "In this lecture, Dr. Bell introduces compound data types, such as lists and tuples, and explains the concepts of aliasing, mutability, and cloning."
             },
         ],
     }
@@ -67,7 +45,9 @@ def process():
     if request.method == "POST":
         message = request.get_json()
         query = message["query"]
-        print(query)
+        
+        response = final_response(query)
+    return jsonify({"message" : response})
 
 
 if __name__ == "__main__":
