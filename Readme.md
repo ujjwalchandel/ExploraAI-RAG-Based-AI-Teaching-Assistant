@@ -35,10 +35,10 @@ It will convert all mp3 files into text and process it into json format inside `
 Run `text_to_embedding.py` 
 It will convert json files into DataFrame with embeddings and save it as a joblib pickle file
 
-## Step 7: Inference
+## Step 7: Response generation using Gemini 3 Flash model
 Load the joblib file and create a relevant prompt using the data as per the user query and feed it to the local LLM and give you response.
 
-# Ollama Installation (Recommended before Inference)
+# Ollama Installation (Recommended before Inference ) for local LLM and embedding model
 
 This guide explains how to install **Ollama** on Windows and how to download and run the **LLaMA 3.2** model using Ollama.
 
