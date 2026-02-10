@@ -11,7 +11,7 @@ import time
 df = joblib.load("embeddings_df.joblib")
 
 def create_embeddings(text_list):
-    r = requests.post("http://localhost:11434/api/embed", json={
+    r = requests.post("https://becoming-sol-trivia-reproduction.trycloudflare.com/api/embed", json={
         "model": "bge-m3",
         "input": text_list
     })
